@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wzx.dao.SmsUserMapper">
+  <resultMap id="BaseResultMap" type="com.wzx.domain.SmsUser">
+    <id column="sms_id" jdbcType="INTEGER" property="smsId" />
+    <result column="sms_username" jdbcType="VARCHAR" property="smsUsername" />
+    <result column="sms_password" jdbcType="VARCHAR" property="smsPassword" />
+    <result column="sms_name" jdbcType="VARCHAR" property="smsName" />
+    <result column="sms_date" jdbcType="DATE" property="smsDate" />
+    <result column="sms_birth" jdbcType="DATE" property="smsBirth" />
+    <result column="sms_address" jdbcType="VARCHAR" property="smsAddress" />
+    <result column="sms_delete" jdbcType="INTEGER" property="smsDelete" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sms_id, sms_username, sms_password, sms_name, sms_date, sms_birth, sms_address, sms_delete
+  </sql>
+
+  <!--登录-->
+  <select id="selectLogin" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from sms_user
+    where sms_username = #{smsUsername,jdbcType=VARCHAR}
+    and sms_password = #{smsPassword,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sms_user
+    where sms_id = #{smsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sms_user
+    where sms_id = #{smsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.wzx.domain.SmsUser">
+    insert into sms_user (sms_id, sms_username, sms_password, 
+      sms_name, sms_date, sms_birth, 
+      sms_address, sms_delete)
+    values (#{smsId,jdbcType=INTEGER}, #{smsUsername,jdbcType=VARCHAR}, #{smsPassword,jdbcType=VARCHAR}, 
+      #{smsName,jdbcType=VARCHAR}, #{smsDate,jdbcType=DATE}, #{smsBirth,jdbcType=DATE}, 
+      #{smsAddress,jdbcType=VARCHAR}, #{smsDelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wzx.domain.SmsUser">
+    insert into sms_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="smsId != null">
+        sms_id,
+      </if>
+      <if test="smsUsername != null">
+        sms_username,
+      </if>
+      <if test="smsPassword != null">
+        sms_password,
+      </if>
+      <if test="smsName != null">
+        sms_name,
+      </if>
+      <if test="smsDate != null">
+        sms_date,
+      </if>
+      <if test="smsBirth != null">
+        sms_birth,
+      </if>
+      <if test="smsAddress != null">
+        sms_address,
+      </if>
+      <if test="smsDelete != null">
+        sms_delete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="smsId != null">
+        #{smsId,jdbcType=INTEGER},
+      </if>
+      <if test="smsUsername != null">
+        #{smsUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="smsPassword != null">
+        #{smsPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="smsName != null">
+        #{smsName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDate != null">
+        #{smsDate,jdbcType=DATE},
+      </if>
+      <if test="smsBirth != null">
+        #{smsBirth,jdbcType=DATE},
+      </if>
+      <if test="smsAddress != null">
+        #{smsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDelete != null">
+        #{smsDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wzx.domain.SmsUser">
+    update sms_user
+    <set>
+      <if test="smsUsername != null">
+        sms_username = #{smsUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="smsPassword != null">
+        sms_password = #{smsPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="smsName != null">
+        sms_name = #{smsName,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDate != null">
+        sms_date = #{smsDate,jdbcType=DATE},
+      </if>
+      <if test="smsBirth != null">
+        sms_birth = #{smsBirth,jdbcType=DATE},
+      </if>
+      <if test="smsAddress != null">
+        sms_address = #{smsAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="smsDelete != null">
+        sms_delete = #{smsDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where sms_id = #{smsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wzx.domain.SmsUser">
+    update sms_user
+    set sms_username = #{smsUsername,jdbcType=VARCHAR},
+      sms_password = #{smsPassword,jdbcType=VARCHAR},
+      sms_name = #{smsName,jdbcType=VARCHAR},
+      sms_date = #{smsDate,jdbcType=DATE},
+      sms_birth = #{smsBirth,jdbcType=DATE},
+      sms_address = #{smsAddress,jdbcType=VARCHAR},
+      sms_delete = #{smsDelete,jdbcType=INTEGER}
+    where sms_id = #{smsId,jdbcType=INTEGER}
+  </update>
+</mapper>
