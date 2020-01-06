@@ -14,4 +14,6 @@ public interface SmsUserMapper {
     int updateByPrimaryKeySelective(SmsUser record);
 
     int updateByPrimaryKey(SmsUser record);
+    /*登录*/
+    SmsUser selectLogin(SmsUser smsUser);
 }

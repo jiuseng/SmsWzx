@@ -16,7 +16,7 @@
   </sql>
 
   <!--登录-->
-  <select id="selectLogin" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectLogin" parameterType="com.wzx.domain.SmsUser" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from sms_user

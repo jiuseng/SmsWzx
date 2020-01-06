@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/page")
 public class PageSkip {
 
-    @RequestMapping("login")
+    @RequestMapping("/index")
     public String loginPage(){
         return "login";
     }

@@ -40,18 +40,18 @@ public class ShiorConfig {
         //2.设置SecurityManager
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         //3.设置默认登录的url地址
-        shiroFilterFactoryBean.setLoginUrl("/page/login");
+        shiroFilterFactoryBean.setLoginUrl("/page/index");
         //4.设置成功登录后跳转的链接地址
-        shiroFilterFactoryBean.setSuccessUrl("/index");
+        shiroFilterFactoryBean.setSuccessUrl("/welcome");
         //5.设置未授权界面
-        shiroFilterFactoryBean.setUnauthorizedUrl("/page/404");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/404");
         //定义LinkedHashMap 是有顺序的，进行有顺序的拦截
         LinkedHashMap<String,String> linkedHashMap=new LinkedHashMap<>();
         //配置shiro filter过滤器  shiro自带的logout 登出过滤器
-        linkedHashMap.put("/logout","logout");
         //设置登录以及主页，静态资源不需要认证
         // 使用shiro自带的anon 匿名过滤器 不需要认证就可以访问
-        linkedHashMap.put("/login","anon");
+        linkedHashMap.put("/user/**","anon");
+        linkedHashMap.put("/page/**","anon");
         linkedHashMap.put("/api/**","anon");
         linkedHashMap.put("/css/**","anon");
         linkedHashMap.put("/fonts/**","anon");
